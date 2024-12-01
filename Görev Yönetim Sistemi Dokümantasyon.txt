@@ -1,0 +1,99 @@
+Görev Yönetim Sistemi Dokümantasyonu:
+
+Genel Bakış
+
+Bu betik, Python kullanılarak bir görev yönetim sistemi uygular. Kullanıcılara görevlerini yönetmek için bir komut satırı arayüzü (CLI) sağlar. Kullanıcılar aşağıdaki işlemleri gerçekleştirebilir:
+
+Yeni görevler ekleyebilir.
+Görevleri tamamlandı olarak işaretleyebilir.
+Görevleri silebilir.
+Görevleri "Yapılacaklar" ve "Tamamlananlar" olarak görüntüleyebilir.
+Görevleri bir dosyaya kaydedebilir ve program başlatıldığında bu dosyadan yükleyebilir.
+Görevler, Task sınıfı aracılığıyla temsil edilir ve TaskManager sınıfı bu görevlerin yönetimini sağlar.
+
+Sınıflar ve Metotlar
+
+1. Task Sınıfı
+Bu sınıf, tek bir görevi modellemek için kullanılır.
+
+Özellikler:
+name (str): Görevin adı veya açıklaması.
+completed (bool): Görevin tamamlanıp tamamlanmadığını belirtir. Varsayılan olarak False.
+Metotlar:
+__init__(self, name): Bir Task nesnesi oluşturur, adı belirler ve görevi tamamlanmamış olarak işaretler.
+complete(self): Görevi tamamlanmış olarak işaretler (completed özelliğini True yapar).
+__str__(self): Görevin kullanıcı dostu bir metin temsilini döndürür. Tamamlanmış görevler için [*] ve tamamlanmamış görevler için [ ] gösterir.
+2. TaskManager Sınıfı
+Bu sınıf, görevlerin koleksiyonunu yönetir ve yaygın işlemler için metotlar sağlar.
+
+Özellikler:
+tasks (list): Tüm Task nesnelerini saklayan bir liste.
+Metotlar:
+__init__(self): Boş bir görev listesiyle görev yöneticisini başlatır.
+add_task(self, task): Bir Task nesnesini tasks listesine ekler.
+remove_task(self, task): Belirtilen bir Task nesnesini tasks listesinden kaldırır.
+complete_task(self, task): Belirli bir görevi tamamlanmış olarak işaretler (complete metodunu çağırır).
+save_tasks(self, filename): Tüm görevleri belirtilen bir dosyaya kaydeder. Görevler GörevAdı,Durum formatında saklanır (Durum True veya False olur).
+load_tasks(self, filename): Belirtilen bir dosyadan görevleri yükler. Her satırdan bir Task nesnesi oluşturur ve tamamlanma durumunu geri yükler.
+display_tasks(self): Tüm görevleri "Yapılacaklar" (tamamlanmamış) ve "Tamamlananlar" olarak kategorilere ayırarak görüntüler.
+Program Akışı
+1. Başlatma
+TaskManager sınıfının bir örneği oluşturulur.
+Eğer tasks.txt dosyası varsa, görevler bu dosyadan yüklenir.
+2. Kullanıcı Etkileşimi
+Program şu menüyü sunar:
+
+Görev Ekle:
+Kullanıcıdan bir görev adı girmesi istenir.
+Yeni bir Task nesnesi oluşturulur ve görev yöneticisine eklenir.
+Görev Sil:
+Mevcut görevler indeksleriyle birlikte görüntülenir.
+Kullanıcıdan silmek istediği görevin indeksini girmesi istenir.
+Seçilen görev görev yöneticisinden kaldırılır.
+Görevi Tamamla:
+Mevcut görevler indeksleriyle birlikte görüntülenir.
+Kullanıcıdan tamamlamak istediği görevin indeksini girmesi istenir.
+Seçilen görev tamamlanmış olarak işaretlenir.
+Görevleri Görüntüle:
+Görevler "Yapılacaklar" ve "Tamamlananlar" olarak görüntülenir.
+Çıkış:
+Tüm görevler tasks.txt dosyasına kaydedilir.
+Programdan çıkılır.
+3. Veri Saklama
+Kullanıcı programdan çıktığında görevler bir dosyaya (tasks.txt) kaydedilir.
+Her görev şu formatta saklanır: GörevAdı,Durum.
+Program başlatıldığında, dosyadan görevleri okuyarak listeyi geri yükler.
+Örnek Etkileşim
+Görev Ekle:
+markdown
+Kodu kopyala
+1. Görev Ekle
+Görev adı: Alışveriş listesi oluştur
+Görevleri Görüntüle:
+makefile
+Kodu kopyala
+Yapılacaklar:
+[ ] Alışveriş listesi oluştur
+Tamamlananlar:
+Görev Tamamla:
+less
+Kodu kopyala
+Görevi Tamamla
+Yapılacaklar:
+1. [ ] Alışveriş listesi oluştur
+Tamamlamak istediğiniz görevin numarası: 1
+Görev Sil:
+less
+Kodu kopyala
+Görev Sil
+Yapılacaklar:
+1. [ ] Alışveriş listesi oluştur
+Silmek istediğiniz görevin numarası: 1
+Çıkış:
+Kodu kopyala
+Çıkış yapılıyor...
+Notlar
+Uygulama veri kalıcılığı için tasks.txt dosyasını kullanır.
+Menüde gösterilen görev indeksleri, kullanıcı kolaylığı için 1'den başlar.
+Program başlatıldığında tasks.txt dosyası mevcut değilse, boş bir görev listesiyle başlatılır.
+

@@ -1,0 +1,71 @@
+Film Yönetim Uygulaması Dökümantasyonu: 
+
+Genel Bakış
+
+Bu Python uygulaması, basit bir film yönetim sistemi sunar. Kullanıcılar filmleri ekleyebilir, listeleyebilir, tür veya yıl bazında filtreleyebilir ve belirli filmleri silebilir. Program, Film ve FilmYoneticisi adında iki ana sınıf içerir.
+
+Sınıflar ve Metotlar
+
+1. Film Sınıfı
+Film sınıfı, bir film nesnesini temsil eder ve filmin temel bilgilerini içerir.
+
+Özellikler:
+ad (str): Filmin adı.
+yonetmen (str): Filmin yönetmeni.
+yil (int): Filmin yapım yılı.
+tur (str): Filmin türü.
+Metotlar:
+__init__(self, ad, yonetmen, yil, tur): Film nesnesini başlatır. Parametreler, filmin adı, yönetmeni, yapım yılı ve türünü alır.
+__str__(self): Film nesnesini kullanıcı dostu bir formatta döner. Örneğin: "Inception (2010) - Bilim Kurgu, Yönetmen: Christopher Nolan".
+2. FilmYoneticisi Sınıfı
+FilmYoneticisi sınıfı, filmlerin eklenip yönetildiği ana sınıftır.
+
+Özellikler:
+filmler (list): Film nesnelerini içeren liste.
+Metotlar:
+__init__(self): FilmYoneticisi nesnesini başlatır ve filmler listesini boş olarak oluşturur.
+film_ekle(self, ad, yonetmen, yil, tur): Yeni bir Film nesnesi oluşturur ve bu nesneyi filmler listesine ekler. Kullanıcıya başarı mesajı gösterir.
+filmleri_listele(self, filtre_tur=None, filtre_yil=None): filmler listesindeki filmleri, belirtilen tür ve/veya yıl filtrelerine göre listeleyerek ekrana yazdırır. Eğer filtreleme için bir kriter girilmemişse, tüm filmleri listeleyip gösterir.
+film_sil(self, index): Belirtilen index'teki filmi filmler listesinden siler. Geçersiz indekslerde hata mesajı gösterir.
+Programın İşleyişi
+Program, kullanıcıya bir dizi seçenek sunarak film yönetim işlemlerini yapmasına olanak tanır. Programın çalışma mantığı, kullanıcıdan aldığı girişe göre uygun metotları çağırmaktan oluşur.
+
+Menü Seçenekleri:
+Film Ekle: Kullanıcıdan film bilgilerini alır (ad, yönetmen, yıl, tür) ve yeni bir film ekler.
+Filmleri Listele: Mevcut filmleri, belirtilen tür ve/veya yıl filtrelerine göre listeleyerek ekrana yazdırır.
+Film Sil: Kullanıcıdan bir indeks alır ve o indeksteki filmi siler.
+Çıkış: Programı sonlandırır.
+Kullanıcı Girişi ve İşlem Akışı:
+Kullanıcı, bir işlem seçeneği girer ve program, seçilen işlem için gerekli bilgileri alır veya işlemi gerçekleştirir.
+Film ekleme sırasında, film bilgileri kullanıcıdan alınıp film_ekle metodu ile listeye eklenir.
+Film listeleme sırasında, kullanıcı filtreleme yapabilir (örneğin, tür veya yıl bazında). filmleri_listele metodu bu bilgileri kullanarak listeleme yapar.
+Film silme işlemi, kullanıcıdan bir indeks alır ve film_sil metodu ile listeden silinir.
+Program, kullanıcı "4" (Çıkış) seçeneğini girene kadar çalışmaya devam eder.
+Örnek Kullanım
+Film Ekleme
+python
+Kodu kopyala
+yonetici = FilmYoneticisi()
+yonetici.film_ekle("Inception", "Christopher Nolan", 2010, "Bilim Kurgu")
+# Çıktı:
+# Film başarıyla eklendi!
+Filmleri Listeleme
+python
+Kodu kopyala
+yonetici.filmleri_listele()
+# Çıktı:
+# Filmler:
+# Inception (2010) - Bilim Kurgu, Yönetmen: Christopher Nolan
+Filmleri Tür veya Yıla Göre Listeleme
+python
+Kodu kopyala
+yonetici.filmleri_listele(filtre_tur="Bilim Kurgu")
+# Çıktı:
+# Filmler:
+# Inception (2010) - Bilim Kurgu, Yönetmen: Christopher Nolan
+Film Silme
+python
+Kodu kopyala
+yonetici.film_sil(0)
+# Çıktı:
+# Silinen film: Inception (2010) - Bilim Kurgu, Yönetmen: Christopher Nolan

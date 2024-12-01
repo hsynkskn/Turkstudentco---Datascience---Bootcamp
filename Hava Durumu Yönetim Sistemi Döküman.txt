@@ -1,0 +1,71 @@
+Hava Durumu Yönetim Sistemi Dökümantasyonu:
+
+Genel Bakış
+
+Bu Python programı, şehirlerin hava durumu bilgilerini yönetmeyi ve kullanıcıların bu bilgileri görüntülemesini sağlar. Program, şehir ekleme, sıcaklık güncelleme ve hava durumu sorgulama gibi temel işlemleri yapabilen bir yapıya sahiptir.
+
+Sınıflar ve Metotlar
+
+1. Sehir Sınıfı
+Bu sınıf, bir şehri temsil eder ve şehrin adını ve sıcaklık bilgisini içerir.
+
+Özellikler:
+ad (str): Şehrin adı.
+sicaklik (float): Şehirdeki sıcaklık değeri.
+Metotlar:
+__init__(self, ad, sicaklik): Şehir nesnesini başlatır. Şehir adı (ad) ve sıcaklık (sicaklik) parametreleri alır.
+__str__(self): Şehri kullanıcı dostu bir formatta döndürür. Örneğin: "Ankara şehrinin sıcaklığı: 25°C".
+2. HavaDurumu Sınıfı
+Bu sınıf, şehirlerin sıcaklık verilerini saklar ve yönetir. Şehirlerin bilgilerini ekleyip, güncelleyebilir ve hava durumu raporları verebilir.
+
+Özellikler:
+sehirler (dict): Şehir adlarını anahtar ve Sehir nesnelerini değer olarak saklayan bir sözlük.
+Metotlar:
+__init__(self): HavaDurumu nesnesini başlatır ve sehirler adında boş bir sözlük oluşturur.
+sehir_ekle(self, sehir): Bir Sehir nesnesini sehirler sözlüğüne ekler.
+sicaklik_guncelle(self, sehir_adı, yeni_sicaklik): Belirtilen şehir adının sıcaklık değerini günceller. Eğer şehir bulunamazsa bir hata mesajı verir.
+hava_durumu_sorgula(self, sehir_adı): Belirtilen şehir için hava durumu yorumunu ekrana yazdırır. Şehir sıcaklığına göre üç farklı hava durumu yorumu yapılır:
+Soğuk: Eğer sıcaklık 0°C'den düşükse, kullanıcıya "Soğuk, sıkı giyinin." mesajı gösterilir.
+Serin: Eğer sıcaklık 0°C ile 15°C arasındaysa, kullanıcıya "Serin, mont almayı unutmayın." mesajı gösterilir.
+Güzel hava: Eğer sıcaklık 15°C ve üstündeyse, kullanıcıya "Hava güzel, rahat giyin." mesajı gösterilir.
+Eğer şehir bulunamazsa, "Böyle bir şehir bulunamadı." mesajı ekrana yazdırılır.
+Program Akışı
+Kullanıcı Etkileşimi
+Program, kullanıcıdan giriş alarak aşağıdaki işlemleri yapmasına olanak tanır:
+
+Şehir Ekleme:
+Kullanıcıdan şehir adı ve sıcaklık bilgisi alır, ve yeni bir Sehir nesnesi oluşturup HavaDurumu nesnesine ekler.
+Sıcaklık Güncelleme:
+Kullanıcıdan güncellenecek şehir adı ve yeni sıcaklık bilgisi alır ve HavaDurumu nesnesindeki şehir bilgilerini günceller.
+Hava Durumu Sorgulama:
+Kullanıcıdan hava durumu öğrenmek istediği şehir adını alır ve şehir için hava durumu bilgisini ekrana yazdırır.
+Çıkış:
+Kullanıcı programdan çıkmak için bu seçeneği seçer.
+Örnek Kullanım
+Şehir Ekleme:
+python
+Kodu kopyala
+sehir_adı = input("Şehir adı: ")
+sicaklik = float(input("Sıcaklık: "))
+hava_durumu.sehir_ekle(Sehir(sehir_adı, sicaklik))
+Sıcaklık Güncelleme:
+python
+Kodu kopyala
+sehir_adı = input("Hangi şehrin sıcaklığını güncelleyeceksiniz? ")
+yeni_sicaklik = float(input("Yeni sıcaklık: "))
+hava_durumu.sicaklik_guncelle(sehir_adı, yeni_sicaklik)
+Hava Durumu Sorgulama:
+python
+Kodu kopyala
+sehir_adı = input("Hangi şehrin hava durumunu öğrenmek istiyorsunuz? ")
+hava_durumu.hava_durumu_sorgula(sehir_adı)
+Örnek Çıktılar:
+Şehir ekleme sonrası:
+
+mathematica
+Kodu kopyala
+Ankara şehrinin sıcaklığı: 25°C
+Hava durumu sorgulama sonrası:
+
+Kodu kopyala
+Hava güzel, rahat giyin.

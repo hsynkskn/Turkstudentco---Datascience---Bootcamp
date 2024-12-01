@@ -1,0 +1,71 @@
+Not Defteri Uygulaması Dökümantasyonu: 
+
+Genel Bakış
+
+Bu Python programı, basit bir not defteri uygulaması sunar. Kullanıcılar not ekleyebilir, notları listeleyebilir, belirli notları silebilir, notları bir dosyaya kaydedebilir ve bir dosyadan notları yükleyebilir. Program, Not ve NotDefteri adında iki ana sınıf içerir.
+
+Sınıflar ve Metotlar
+
+1. Not Sınıfı
+Bu sınıf, bir notu temsil eder. Not, içerik ve tarih bilgilerini içerir.
+
+Özellikler:
+icerik (str): Notun içeriğini saklar.
+tarih (str): Notun oluşturulma tarihini saklar. Varsayılan olarak, not oluşturulma anı alınır.
+Metotlar:
+__init__(self, icerik, tarih=None): Not nesnesini başlatır. tarih parametresi verilmezse, varsayılan olarak datetime.now() kullanılarak tarih atanır.
+__str__(self): Not nesnesini kullanıcı dostu bir formatta döner. Örneğin: "2023-11-29 14:45:23 - Toplantı notları".
+2. NotDefteri Sınıfı
+Bu sınıf, notların saklandığı ve yönetildiği ana sınıftır.
+
+Özellikler:
+notlar (list): Not nesnelerini içeren liste.
+Metotlar:
+__init__(self): NotDefteri nesnesini başlatır ve notlar listesini boş olarak oluşturur.
+not_ekle(self, icerik): Yeni bir Not nesnesi oluşturur ve bunu notlar listesine ekler.
+notlari_listele(self): notlar listesindeki tüm notları tarih sırasına göre listeleyerek ekrana yazdırır. Liste boşsa, kullanıcıya bilgilendirici bir mesaj gösterir.
+not_sil(self, index): Belirtilen index'teki notu listeden siler. Eğer indeks geçersizse, kullanıcıya hata mesajı gösterir.
+notlari_kaydet(self, dosya_adi): notlar listesindeki tüm notları belirtilen dosyaya kaydeder. Dosya her satıra bir not olacak şekilde yazılır, tarih ve içerik arasında tab karakteri kullanılır.
+notlari_yukle(self, dosya_adi): Belirtilen dosyadaki notları okuyup notlar listesine yükler. Dosya yoksa, kullanıcıya bilgilendirici bir mesaj gösterir. Dosya formatında bir hata oluşursa, kullanıcıya hata mesajı yazdırılır.
+Programın İşleyişi
+Program, kullanıcıya bir dizi seçenek sunarak not defteri işlemlerini yapmasına olanak tanır. Programın çalışma mantığı, kullanıcıdan aldığı girişe göre uygun metotları çağırmaktan oluşur.
+
+Menü Seçenekleri:
+Not Ekle: Kullanıcıdan not içeriğini alır ve yeni bir not ekler.
+Notları Listele: Mevcut tüm notları tarih sırasına göre listeleyerek ekrana yazdırır.
+Not Sil: Belirtilen indeks numarasındaki notu siler. Geçersiz indekslerde hata mesajı gösterir.
+Notları Kaydet: notlar listesindeki notları belirtilen dosyaya kaydeder.
+Notları Yükle: Belirtilen dosyadaki notları notlar listesine yükler.
+Çıkış: Programı sonlandırır.
+Örnek Kullanım
+Not Ekleme
+python
+Kodu kopyala
+not_defteri = NotDefteri()
+not_defteri.not_ekle("Python dersine çalışılması gerekiyor.")
+Notları Listeleme
+python
+Kodu kopyala
+not_defteri.notlari_listele()
+# Çıktı:
+# 2023-11-29 14:45:23 - Python dersine çalışılması gerekiyor.
+Not Silme
+python
+Kodu kopyala
+not_defteri.not_sil(0)
+Notları Kaydetme
+python
+Kodu kopyala
+not_defteri.notlari_kaydet("notlar.txt")
+# Çıktı:
+# Notlar notlar.txt dosyasına kaydedildi.
+Notları Yükleme
+python
+Kodu kopyala
+not_defteri.notlari_yukle("notlar.txt")
+# Çıktı:
+# Notlar notlar.txt dosyasından yüklendi.
+Programın Avantajları
+Kullanıcı dostu: Basit bir metin tabanlı arayüz ile kolay kullanım sağlar.
+Veri kalıcılığı: Notlar dosyaya kaydedilebilir ve tekrar yüklenebilir.
+Esnek yapı: Notları ekleme, silme, listeleme gibi işlevsellikler içerir.

@@ -1,0 +1,114 @@
+Banka Uygulaması Dokümantasyonu:
+
+Genel Bakış
+
+Bu Python kodu, temel bankacılık hizmetlerini simüle eden bir komut satırı tabanlı uygulama geliştirir. Kullanıcılar, hesap açabilir, hesaplarına para yatırabilir, para çekebilir ve bakiyelerini sorgulayabilir. Ayrıca birden fazla kullanıcıyı destekler ve kullanıcılar hesap numaralarıyla sisteme giriş yapabilir.
+
+Sınıflar ve Metotlar
+
+1. Kullanici Sınıfı
+
+Bu sınıf, bireysel banka kullanıcılarını modellemek için kullanılır.
+
+Özellikler:
+
+ad (str): Kullanıcının adı.
+
+hesap_no (int): Kullanıcının banka hesap numarası.
+
+bakiye (float): Kullanıcının hesabındaki mevcut bakiye.
+
+Metotlar:
+
+__init__(self, ad, hesap_no, bakiye): Yeni bir kullanıcı nesnesi oluşturur ve ad, hesap numarası ile başlangıç bakiyesini ayarlar.
+
+para_yatir(self, miktar): Belirtilen miktarı kullanıcının bakiyesine ekler ve yeni bakiyeyi ekrana yazdırır.
+
+para_cek(self, miktar): Belirtilen miktarı kullanıcının bakiyesinden çıkarır. Yetersiz bakiye durumunda uyarı verir.
+
+bakiye_sorgula(self): Kullanıcının mevcut bakiyesini ekrana yazdırır.
+
+2. Banka Sınıfı
+
+Bu sınıf, bankayı ve banka müşterilerini modellemek için kullanılır.
+
+Özellikler:
+
+musteriler (dict): Hesap numaralarını anahtar olarak ve Kullanici nesnelerini değer olarak saklayan bir sözlük.
+
+Metotlar:
+
+__init__(self): Boş bir müşteri sözlükü ile bankayı başlatır.
+
+hesap_ac(self, ad, bakiye): Yeni bir hesap oluşturur, kullanıcıyı musteriler sözlüğüné ekler ve hesap numarasını döner.
+
+giris_yap(self, hesap_no): Belirtilen hesap numarasına sahip bir kullanıcıyı döner. Geçersiz hesap numarası için None döner ve bir hata mesajı gösterir.
+
+Program Akışı
+
+1. Ana Menü
+
+Program, kullanıcıya aşağıdaki seçenekleri sunar:
+
+Hesap Aç:
+
+Kullanıcıdan ad ve başlangıç bakiyesi istenir.
+
+Yeni bir hesap oluşturulur ve hesap numarası ekrana yazdırılır.
+
+Giriş Yap:
+
+Kullanıcıdan hesap numarası istenir.
+
+Hesap bulunursa kullanıcı için alt menü açılır:
+
+Para Yatır: Kullanıcıdan miktar alınır ve bakiye güncellenir.
+
+Para Çek: Kullanıcıdan miktar alınır ve bakiye kontrol edilerek çekilir.
+
+Bakiye Sorgula: Mevcut bakiye ekrana yazdırılır.
+
+Çıkış: Kullanıcı bu alt menüyü kapatır ve ana menüye döner.
+
+Çıkış:
+
+Program sonlandırılır.
+
+2. Veri Saklama
+
+Kullanıcı verileri program kapatıldığında bellekte kaybolur. Gelecekte veri kalıcılığı için dosya veya veritabanı entegrasyonu eklenebilir.
+
+Örnek Kullanım
+
+Hesap Açma:
+
+1. Hesap Aç
+Adınız: Ahmet
+Başlangıç bakiyeniz: 1000
+Hesabınız açıldı. Hesap numaranız: 1
+
+Giriş Yapma ve Para Yatırma:
+
+2. Giriş Yap
+Hesap numaranız: 1
+
+1. Para Yatır
+Yatırmak istediğiniz miktar: 500
+500 TL yatırıldı. Yeni bakiye: 1500 TL
+
+Para Çekme:
+
+2. Para Çek
+Çekmek istediğiniz miktar: 2000
+Yetersiz bakiye.
+
+Bakiye Sorgulama:
+
+3. Bakiye Sorgula
+Bakiyeniz: 1500 TL
+
+Çıkış:
+
+4. Çıkış
+Ana menüye dönüldü.
+

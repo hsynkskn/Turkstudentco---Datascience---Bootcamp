@@ -1,0 +1,84 @@
+Kütüphane Yönetim Sistemi Dokümantasyonu:
+
+Genel Bakış
+
+Bu Python tabanlı kütüphane yönetim sistemi, kullanıcıların bir kitap koleksiyonunu yönetmesine olanak tanır. Sistem, kütüphaneye kitap ekleme, mevcut kitapları listeleme, kitap ödünç alma, ödünç alınan kitapları geri getirme ve ödünç alınan kitapların listesini görüntüleme işlemlerini sağlar.
+
+Sınıflar ve Metotlar
+1. Kitap Sınıfı
+
+Bu sınıf, kütüphanedeki bir kitabı temsil eder.
+
+Özellikler:
+ad: (str) Kitabın adı.
+yazar: (str) Kitabın yazarı.
+odunc_alindi_mi: (bool) Kitabın ödünç alınıp alınmadığını belirtir. Varsayılan olarak False.
+Metotlar:
+__init__(self, ad, yazar): Kitabın adını (ad), yazarını (yazar) ve odunc_alindi_mi değerini False olarak başlatır.
+__str__(self): Kitabın adını, yazarını ve ödünç alma durumunu şu formatta döndürür: KitapAdı - Yazar (Ödünç Alındı: Evet/Hayır).
+2. Kutuphane Sınıfı
+Bu sınıf, kütüphanedeki kitap koleksiyonunu ve ödünç alma/geri getirme gibi işlemleri yönetir.
+
+Özellikler:
+kitaplar: (list) Kütüphanedeki tüm kitapları içeren Kitap nesnelerinden oluşan liste.
+odunc_alinanlar: (list) Şu anda ödünç alınmış kitapları içeren Kitap nesnelerinden oluşan liste.
+Metotlar:
+__init__(self): Boş bir kitaplar ve odunc_alinanlar listesi ile kütüphaneyi başlatır.
+kitap_ekle(self, kitap): Yeni bir kitabı (Kitap nesnesi) kütüphaneye ekler.
+kitap_listesi(self): Kütüphanedeki tüm kitapları ve ödünç alma durumlarını ekrana yazdırır.
+kitap_odunc_al(self, kitap_adı): Kitabın adını (kitap_adı) kullanarak ödünç alma işlemi yapar. Kitap bulunursa ve ödünç alınmamışsa, ödünç alma durumunu (odunc_alindi_mi = True) olarak işaretler ve odunc_alinanlar listesine ekler. Aksi halde kullanıcıya bilgi verir.
+kitap_geri_getir(self, kitap_adı): Ödünç alınan kitabı adını kullanarak geri getirir. Kitap odunc_alinanlar listesinde bulunursa, ödünç alma durumunu False yapar ve listeden çıkarır. Aksi halde kullanıcıya bilgi verir.
+odunc_alinan_kitaplar_listesi(self): Şu anda ödünç alınmış kitapları ekrana yazdırır.
+Program Akışı
+Başlatma:
+
+Kütüphane (Kutuphane nesnesi) oluşturulur.
+kitap_ekle metodu kullanılarak kütüphaneye kitaplar eklenir.
+İşlemler:
+
+Kullanıcılar aşağıdaki işlemleri gerçekleştirebilir:
+Kitap Ekle:
+Kütüphaneye yeni bir kitap ekler.
+Kitapları Listele:
+Kütüphanedeki tüm kitapları ödünç alma durumlarıyla birlikte listeler.
+Kitap Ödünç Al:
+Bir kitabı adıyla ödünç alır ve ödünç durumunu işaretler.
+Kitap Geri Getir:
+Ödünç alınan bir kitabı adıyla geri getirir.
+Ödünç Alınan Kitapları Görüntüle:
+Şu anda ödünç alınan kitapları listeler.
+Örnek Kullanım
+Kütüphaneye Kitap Ekleme:
+python
+Kodu kopyala
+kutuphane.kitap_ekle(Kitap("Vatan Yahut Silistre", "Namık Kemal"))
+kutuphane.kitap_ekle(Kitap("Çalı Kuşu", "Reşat Nuri Güntekin"))
+Kitapları Listeleme:
+python
+Kodu kopyala
+kutuphane.kitap_listesi()
+# Çıktı:
+# Vatan Yahut Silistre - Namık Kemal (Ödünç Alındı: Hayır)
+# Çalı Kuşu - Reşat Nuri Güntekin (Ödünç Alındı: Hayır)
+Kitap Ödünç Alma:
+python
+Kodu kopyala
+kutuphane.kitap_odunc_al("Vatan Yahut Silistre")
+# Çıktı:
+# Vatan Yahut Silistre kitabı ödünç alındı.
+Kitap Geri Getirme:
+python
+Kodu kopyala
+kutuphane.kitap_geri_getir("Vatan Yahut Silistre")
+# Çıktı:
+# Vatan Yahut Silistre kitabı geri getirildi.
+Ödünç Alınan Kitapları Listeleme:
+python
+Kodu kopyala
+kutuphane.odunc_alinan_kitaplar_listesi()
+# Çıktı:
+# Çalı Kuşu - Reşat Nuri Güntekin (Ödünç Alındı: Evet)
+Notlar
+Program, Türkçe karakterler ve dil ile kullanıcı etkileşimi için tasarlanmıştır.
+Kitap adlarının ödünç alma veya geri getirme işlemlerinde birebir eşleşmesi gerekir.
+Aynı kitabın tekrar ödünç alınmasını engeller.

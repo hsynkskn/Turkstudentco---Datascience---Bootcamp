@@ -1,0 +1,70 @@
+Ürün ve Sepet Yönetim Sistemi Dökümantasyonu: 
+
+Genel Bakış
+
+Bu Python programı, basit bir alışveriş sepeti yönetim sistemini temsil eder. Program, kullanıcıların ürünleri sepete ekleyip, çıkarmasına ve toplam tutarı hesaplamasına olanak tanır. İki ana sınıf içerir: Urun ve Sepet.
+
+Sınıflar ve Metotlar
+
+1. Urun Sınıfı
+Bu sınıf, bir ürünü temsil eder ve ürünle ilgili temel bilgileri içerir.
+
+Özellikler:
+ad (str): Ürünün adı.
+fiyat (float): Ürünün fiyatı (birim fiyat).
+miktar (int): Sepetteki üründen kaç adet olduğunu gösterir.
+Metotlar:
+__init__(self, ad, fiyat, miktar): Urun nesnesini başlatır. Ürün adı, fiyatı ve miktarı parametre olarak alır.
+__str__(self): Ürünün kullanıcı dostu bir biçimde temsilini döner. Örneğin: "3 adet Elma (5.0 TL)".
+2. Sepet Sınıfı
+Bu sınıf, ürünlerin saklandığı ve yönetildiği sepeti temsil eder.
+
+Özellikler:
+urunler (list): Sepetteki tüm Urun nesnelerini saklayan bir liste.
+Metotlar:
+__init__(self): Sepet nesnesini başlatır ve boş bir urunler listesi oluşturur.
+urun_ekle(self, urun): Sepete bir Urun nesnesi ekler.
+urun_cikar(self, urun_adı): Belirtilen isimdeki ürünü sepette arar ve bulursa çıkarır. Ürün bulunamazsa bir hata mesajı yazdırır.
+sepeti_listele(self): Sepetteki tüm ürünleri ekrana yazdırır.
+toplam_tutar(self): Sepetteki tüm ürünlerin toplam tutarını hesaplar ve döner.
+Programın İşleyişi
+Bu kod parçası, bir alışveriş sepeti uygulaması için ürünleri ekleyip çıkarmanıza ve sepetin toplam tutarını hesaplamanıza olanak tanır. Kullanıcı aşağıdaki işlemleri gerçekleştirebilir:
+
+Ürün Ekleme:
+Sepet nesnesine Urun nesneleri eklenebilir.
+Ürün Çıkarma:
+Belirtilen isimdeki ürün sepette arandıktan sonra çıkarılabilir. Eğer ürün bulunamazsa, kullanıcıya bilgilendirici bir mesaj gösterilir.
+Sepeti Listeleme:
+Sepetteki tüm ürünler kullanıcıya listelenir.
+Toplam Tutar Hesaplama:
+Sepetteki tüm ürünlerin fiyatı ve miktarı dikkate alınarak toplam tutar hesaplanır.
+Örnek Kullanım
+Ürün Oluşturma ve Sepete Ekleme
+python
+Kodu kopyala
+elma = Urun("Elma", 5.0, 3)  # 3 adet Elma, birim fiyatı 5.0 TL
+muz = Urun("Muz", 3.0, 2)    # 2 adet Muz, birim fiyatı 3.0 TL
+
+sepet = Sepet()
+sepet.urun_ekle(elma)
+sepet.urun_ekle(muz)
+Sepeti Listeleme
+python
+Kodu kopyala
+sepet.sepeti_listele()
+# Çıktı:
+# 3 adet Elma (5.0 TL)
+# 2 adet Muz (3.0 TL)
+Ürün Çıkarma
+python
+Kodu kopyala
+sepet.urun_cikar("Elma")
+sepet.sepeti_listele()
+# Çıktı:
+# 2 adet Muz (3.0 TL)
+Toplam Tutarı Hesaplama
+python
+Kodu kopyala
+print(f"Toplam tutar: {sepet.toplam_tutar()} TL")
+# Çıktı:
+# Toplam tutar: 6.0 TL
